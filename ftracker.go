@@ -53,7 +53,6 @@ type InfoMessage struct {
 
 // TrainingInfo возвращает труктуру InfoMessage, в которой хранится вся информация о проведенной тренировке.
 func (t Training) TrainingInfo() InfoMessage {
-
 	return InfoMessage{
 		TrainingType: t.TrainingType,
 		Duration:     t.Duration,
@@ -95,7 +94,6 @@ type Running struct {
 // ((18 * средняя_скорость_в_км/ч + 1.79) * вес_спортсмена_в_кг / м_в_км * время_тренировки_в_часах * мин_в_часе)
 // Это переопределенный метод Calories() из Training.
 func (r Running) Calories() float64 {
-	// вставьте ваш код ниже
 	var spentCal float64
 	spentCal = (CaloriesMeanSpeedMultiplier*r.meanSpeed() + CaloriesMeanSpeedShift) * r.Weight / MInKm * r.Duration.Hours() * MinInHours
 	return spentCal
@@ -167,8 +165,6 @@ func (s Swimming) meanSpeed() float64 {
 // Это переопределенный метод Calories() из Training.
 func (s Swimming) Calories() float64 {
 	var spentCal float64
-	// Формула расчета:
-	//(средняя_скорость_в_км/ч + SwimmingCaloriesMeanSpeedShift) * SwimmingCaloriesWeightMultiplier * вес_спортсмена_в_кг * время_тренеровки_в_часах
 	spentCal = (s.meanSpeed() + SwimmingCaloriesMeanSpeedShift) * SwimmingCaloriesWeightMultiplier * s.Weight * s.Duration.Hours()
 	return spentCal
 }
