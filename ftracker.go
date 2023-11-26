@@ -180,11 +180,8 @@ func (s Swimming) TrainingInfo() InfoMessage {
 		TrainingType: s.Training.TrainingType,
 		Distance:     s.distance(),
 		Speed:        s.meanSpeed(),
-		// Нужно также переопределить Duration, так как будет возвращаться 0 из TrainingInfo() из Training из-за того,
-		// что мы переопределили метод meanSpeed() в структуре Swimming и в нем используется Duration из Training. А второй раз использовать
-		// Duration из Training нельзя. Потому что время продолжительности тренировки в Swimming переводилось в часы, и в итоге из-за этого
-		// преобразования происходило деление на 0, а на 0 делить нельзя. Поэтому нужно переопределить Duration в структуре Swimming.
-		Duration: s.Duration,
+		Duration:     s.Duration,
+		Calories:     s.Calories(),
 	}
 }
 
